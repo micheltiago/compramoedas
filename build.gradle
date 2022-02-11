@@ -1,0 +1,51 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.9'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id "io.swagger.core.v3.swagger-gradle-plugin" version "2.1.12"
+	id 'java'
+}
+
+apply plugin: "io.swagger.core.v3.swagger-gradle-plugin"
+
+group = 'io.desafio.compramoedas'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-spring-webflux:3.0.0'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+	compileOnly 'io.springfox:springfox-swagger-ui:3.0.0'
+	compileOnly 'io.springfox:springfox-swagger2:3.0.0'
+	compileOnly 'io.springfox:springfox-spring-webflux:3.0.0'
+	compileOnly 'io.springfox:springfox-boot-starter:3.0.0'
+	compileOnly 'org.projectlombok:lombok'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	runtimeOnly 'com.h2database:h2'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
